@@ -82,7 +82,7 @@ DATABASES = {
             'USER': 'ahmed',
             'PASSWORD': '',
             'HOST': 'enigmatic-earth-93436.herokuapp.com',
-            'PORT': '6379',
+            'PORT': '',
     }
 }
 
