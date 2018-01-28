@@ -141,7 +141,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'asgi_redis.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [('.herokuapp.com', 6379)],
+            'hosts': [('herokuapp.com', 6379)],
         },
         'ROUTING': 'multichat.routing.channel_routing',
     }
