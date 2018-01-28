@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'multichat.wsgi.application'
 DATABASES = {
     'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'multichat',
+            'NAME': 'chat',
             'USER': 'name',
             'PASSWORD': '',
             'HOST': 'localhost',
