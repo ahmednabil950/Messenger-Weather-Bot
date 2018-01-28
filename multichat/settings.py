@@ -81,7 +81,7 @@ DATABASES = {
             'NAME': 'enigmatic-earth-93436',
             'USER': 'name',
             'PASSWORD': '',
-            'HOST': 'localhost',
+            'HOST': '.herokuapp.com',
             'PORT': '',
     }
 }
