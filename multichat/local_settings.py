@@ -25,7 +25,7 @@ SECRET_KEY = 'jpabq-8oy21b=vh-!l+ojf!#c&%vfe=77%)vk*(q!v=2u$net5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', '.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -77,12 +77,8 @@ WSGI_APPLICATION = 'multichat.wsgi.application'
 
 DATABASES = {
     'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'djangogirls',
-            'USER': 'name',
-            'PASSWORD': '',
-            'HOST': 'localhost',
-            'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -143,4 +139,4 @@ CHANNEL_LAYERS = {
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
-DEBUG = False
+DEBUG = True
