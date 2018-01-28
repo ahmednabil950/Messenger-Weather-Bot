@@ -81,8 +81,8 @@ DATABASES = {
             'NAME': 'enigmatic-earth-93436',
             'USER': 'ahmed',
             'PASSWORD': '',
-            'HOST': 'localhost',
-            'PORT': '',
+            'HOST': 'enigmatic-earth-93436.herokuapp.com',
+            'PORT': '6379',
     }
 }
 
@@ -141,7 +141,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'asgi_redis.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
+            'hosts': [('enigmatic-earth-93436.herokuapp.com', 6379)],
         },
         'ROUTING': 'multichat.routing.channel_routing',
     }
