@@ -135,6 +135,7 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
 
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 CHANNEL_LAYERS = {
     'default': {
@@ -152,4 +153,3 @@ LOGOUT_REDIRECT_URL = "/"
 
 DEBUG = False
 
-# STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
