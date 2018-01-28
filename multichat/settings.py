@@ -153,3 +153,4 @@ LOGOUT_REDIRECT_URL = "/"
 
 DEBUG = False
 
+
