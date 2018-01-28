@@ -9,6 +9,7 @@ constantly==15.1.0
 daphne==1.4.2
 dj-database-url==0.4.2
 Django==2.0.1
+gunicorn==19.7.1
 hyperlink==17.3.1
 incremental==17.5.0
 isort==4.2.15
