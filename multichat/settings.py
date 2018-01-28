@@ -79,7 +79,7 @@ DATABASES = {
     'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'enigmatic-earth-93436',
-            'USER': 'name',
+            'USER': 'ahmed',
             'PASSWORD': '',
             'HOST': 'localhost',
             'PORT': '',
@@ -141,7 +141,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'asgi_redis.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [('enigmatic-earth-93436.herokuapp.com')],
+            'hosts': [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
         },
         'ROUTING': 'multichat.routing.channel_routing',
     }
