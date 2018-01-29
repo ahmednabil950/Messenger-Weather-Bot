@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
-ROOT_URLCONF = 'multichat.urls'
+ROOT_URLCONF = 'chat.urls'
 
 TEMPLATES = [
     {
