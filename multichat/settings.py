@@ -132,11 +132,6 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
 
-from urllib.parse import urlparse
-from redis import Redis
-redis_url = os.getenv('REDISTOGO_URL')
-print(redis_url)
-url = urlparse(redis_url)
 
 CHANNEL_LAYERS = {
     'default': {
