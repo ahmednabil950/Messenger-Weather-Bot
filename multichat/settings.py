@@ -135,6 +135,7 @@ STATICFILES_DIRS = (
 from urllib.parse import urlparse
 from redis import Redis
 redis_url = os.getenv('REDISTOGO_URL')
+print(redis_url)
 url = urlparse(redis_url)
 
 CHANNEL_LAYERS = {
@@ -153,4 +154,4 @@ LOGOUT_REDIRECT_URL = "/"
 
 DEBUG = True
 
-# STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
