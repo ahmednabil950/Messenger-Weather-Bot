@@ -25,7 +25,7 @@ SECRET_KEY = 'jpabq-8oy21b=vh-!l+ojf!#c&%vfe=77%)vk*(q!v=2u$net5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', '.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -78,11 +78,6 @@ WSGI_APPLICATION = 'multichat.wsgi.application'
 DATABASES = {
     'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'enigmatic-earth-93436',
-            'USER': 'ahmed',
-            'PASSWORD': '',
-            'HOST': 'enigmatic-earth-93436.herokuapp.com',
-            'PORT': '',
     }
 }
 
