@@ -137,7 +137,6 @@ from redis import Redis
 redis_url = os.getenv('REDISTOGO_URL')
 urlparse.uses_netloc.append('redis')
 url = urlparse.urlparse(redis_url)
-print(url)
 
 CHANNEL_LAYERS = {
     'default': {
