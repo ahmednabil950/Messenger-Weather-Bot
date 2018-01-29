@@ -136,7 +136,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'asgi_redis.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [os.environ.get('REDIS_URL')],
+            'hosts': [os.environ.get('REDIS_URL', 'enigmatic-earth-93436.herokuapp.com:'+'PORT')],
         },
         'ROUTING': 'multichat.routing.channel_routing',
     }
