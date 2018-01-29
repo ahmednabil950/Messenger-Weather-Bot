@@ -82,6 +82,7 @@ DATABASES = {
     }
 }
 
+
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
@@ -125,7 +126,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'asgi_redis.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [('enigmatic-earth-93436.herokuapp.com', 4829)],
+            'hosts': [('localhost', 6379)],
         },
         'ROUTING': 'multichat.routing.channel_routing',
     }
