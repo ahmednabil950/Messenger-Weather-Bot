@@ -1,2 +1,2 @@
-web: daphne multichat.asgi:channel_layer --port $PORT --bind 0.0.0.0
+web: gunicorn multichat.wsgi --log-file -
 worker: python manage.py runworker -v2
