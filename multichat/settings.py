@@ -80,12 +80,13 @@ WSGI_APPLICATION = 'multichat.wsgi.application'
 DATABASES = {
     'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
+	    'NAME': 'd4s9svhq3buqr0',
+	    'USER': 'judtuggtaiqqse',
+	    'PASSWORD': '417402ff6537d12c6d1a4d721ee80c971994ea85e466d7acc87cc338b97638dd',
+	    'HOST': 'ec2-54-235-240-126.compute-1.amazonaws.com',
+	    'PORT': '5432',
     }
 }
-
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
