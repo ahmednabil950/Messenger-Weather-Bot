@@ -41,13 +41,11 @@ def bot_sender(request):
         if json_status == "text" :
  
             try:
-                # content = ["هالو يا شبح"]
+                content = ["Hello There !!"]
                 text = bot.Return_Received_Text(all_json)
                 text = str(text)
                 print("#### TEXT DATATYPE #####")
                 print(type(text))
-                agent_response = listner_agent(text.strip())
-                content = [agent_response]
                 req_json , req_status = bot.Sent_text_Msgs(content , "RESPONSE" ,recipient_id )
                 print("####### TXT IS #####")
                 print(text)
