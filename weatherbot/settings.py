@@ -25,7 +25,7 @@ SECRET_KEY = '_!d%@86as*626pk5%!#f_+mi7lf=m*a)@609q)9@$$r^9t9l8r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['enigmatic-earth-93436.herokuapp.com']
 
 
 # Application definition
