@@ -42,6 +42,8 @@ def bot_sender(request):
         recipient_id = bot.Return_Reception_ID(all_json)
         json_status = bot.check_json_sent(all_json)
 
+        print(json_status)
+
         if json_status == "text":
 
             try:
