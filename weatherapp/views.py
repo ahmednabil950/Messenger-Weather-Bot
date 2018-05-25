@@ -20,7 +20,7 @@ def bot_access_token(request):
         token_sent = request.GET.get("hub.verify_token")
         if  bot.Verify_Token(token_sent):
             return HttpResponse(request.GET.get("hub.challenge"))
-    return HttpResponse("Error")
+    return HttpResponse()
 
 
 @csrf_exempt
