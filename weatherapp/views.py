@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 from utils.messenger import messenger
+from django.views.decorators.csrf import csrf_exempt
 
 def main_view(request):
     if request.method == 'GET':
@@ -20,6 +21,7 @@ def bot_access_token(request):
     return HttpResponse("Error")
 
 
+@csrf_exempt
 def bot_sender(request):
     
     print(request)
