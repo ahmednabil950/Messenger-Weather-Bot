@@ -1,2 +1,2 @@
-web: gunicorn weatherapp.wsgi --log-file -
+web: gunicorn weatherbot.wsgi --log-file -
 worker: python manage.py runserver
