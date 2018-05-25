@@ -1,2 +1,2 @@
-web: gunicorn httpChat.wsgi --log-file -
+web: gunicorn weatherapp.wsgi --log-file -
 worker: python manage.py runworker -v2
