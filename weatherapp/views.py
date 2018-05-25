@@ -4,7 +4,8 @@ from utils.messenger import messenger
 
 def main_view(request):
     if request.method == 'GET':
-        return bot_access_token()
+        return bot_access_token(request)
+
 
 def bot_access_token(request):
     bot = messenger()
