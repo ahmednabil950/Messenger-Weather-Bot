@@ -3,6 +3,7 @@ from django.http import HttpRequest, HttpResponse
 from utils.messenger import messenger
 from django.views.decorators.csrf import csrf_exempt
 
+@csrf_exempt
 def main_view(request):
     if request.method == 'GET':
         return bot_access_token(request)
