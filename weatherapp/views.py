@@ -7,7 +7,7 @@ def main_view(request):
         return bot_access_token(request)
 
     if request.method == 'POST':
-        
+        return bot_sender(request)
 
 
 def bot_access_token(request):
