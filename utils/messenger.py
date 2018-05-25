@@ -23,7 +23,7 @@ class messenger:
     def check_json_sent(self, Received_Json_From_Facebook):
 
         if Received_Json_From_Facebook["entry"][0]["messaging"][0].get("message").get("attachments"):
-            return Received_Json_From_Facebook["entry"][0]["messaging"][0].get("message").get("attachments")[0].get("type")a
+            return Received_Json_From_Facebook["entry"][0]["messaging"][0].get("message").get("attachments")[0].get("type")
         elif Received_Json_From_Facebook["entry"][0]["messaging"][0].get("message").get("quick_reply"):
             return "quick_reply"
         elif Received_Json_From_Facebook["entry"][0]["messaging"][0].get("message").get("text"):
