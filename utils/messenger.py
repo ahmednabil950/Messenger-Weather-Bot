@@ -35,16 +35,16 @@ class messenger:
     def get_attachement_link(self, Received_Json_From_Facebook):
         return Received_Json_From_Facebook["entry"][0]["messaging"][0].get("message").get("attachments")[0].get("payload").get("url")
 
-    def Return_Reception_ID(self, Received_Json_From_Facebook):
+    def get_receptient_ID(self, Received_Json_From_Facebook):
         return Received_Json_From_Facebook["entry"][0]["messaging"][0]["sender"]["id"]
 
-    def Return_Received_Text(self, Received_Json_From_Facebook):
+    def get_received_text(self, Received_Json_From_Facebook):
         text = Received_Json_From_Facebook["entry"][0]["messaging"][0].get(
             "message")
         if text:
             return text["text"]
 
-    def sent_typing_status(self, rec_ID, status):
+    def get_typing_status(self, rec_ID, status):
 
         params = {"access_token": self.ACCESS_TOKEN}
         headers = {"Content-Type": "application/json"}
@@ -65,7 +65,7 @@ class messenger:
 
         return req.json(), req.status_code
 
-    def Sent_text_Msgs(self, array_of_msgs, msg_type, rec_ID):
+    def send_text_msgs(self, array_of_msgs, msg_type, rec_ID):
 
         params = {"access_token": self.ACCESS_TOKEN}
         headers = {"Content-Type": "application/json"}
@@ -88,7 +88,7 @@ class messenger:
 
         return req.json(), req.status_code
 
-    def Sent_media_Msgs(self, array_of_msgs, rec_ID, media_type, Assest=False):
+    def send_media_msgs(self, array_of_msgs, rec_ID, media_type, Assest=False):
 
         params = {"access_token": self.ACCESS_TOKEN}
         headers = {"Content-Type": "application/json"}

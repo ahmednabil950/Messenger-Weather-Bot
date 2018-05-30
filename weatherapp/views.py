@@ -40,10 +40,9 @@ def bot_sender(request):
         all_json = json.loads(request.body.decode('utf-8'))
         print("###### JSON FORMAT ######")
         print(all_json)
-
-        recipient_id = bot.Return_Reception_ID(all_json)
+        recipient_id = bot.get_receptient_ID(all_json)
         json_status = bot.check_json_sent(all_json)
-
+        print("###### JSON STATUS ######")
         print(json_status)
 
         messenger.quick_reply('text', ['text'], recipient_id)
@@ -51,7 +50,7 @@ def bot_sender(request):
         if json_status == "text":
 
             try:
-                text = bot.Return_Received_Text(all_json)
+                text = bot.get_received_text(all_json)
                 text = str(text)
                 content = [
                     bot_agent(text)
@@ -60,7 +59,7 @@ def bot_sender(request):
                 print(type(text))
                 print("####### TXT IS #######")
                 print(text)
-                req_json, req_status = bot.Sent_text_Msgs(
+                req_json, req_status = bot.send_text_msgs(
                     content, "RESPONSE", recipient_id)
 
             except requests.exceptions.Timeout:
