@@ -45,8 +45,9 @@ def bot_sender(request):
         json_status = bot.check_json_sent(all_json)
         print(json_status)
 
-        if json_status == "text":
+        messenger.quick_reply('Welcome', ['Greetings !!'], recipient_id)
 
+        if json_status == "text":
             try:
                 text = bot.get_received_text(all_json)
                 text = str(text)
@@ -59,7 +60,6 @@ def bot_sender(request):
                 print(text)
                 req_json, req_status = bot.send_text_msgs(
                     content, "RESPONSE", recipient_id)
-
             except requests.exceptions.Timeout:
                 print("time out")
         elif json_status == 'quick_reply':
