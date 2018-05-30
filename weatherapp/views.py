@@ -52,7 +52,7 @@ def bot_sender(request):
                 }
             ]
 
-        messenger.quick_reply("Greetings",quick_replies, 1544799305629782)
+        bot.quick_reply("Greetings",quick_replies, 1544799305629782)
 
         if json_status == "text":
             try:
