@@ -45,7 +45,7 @@ def bot_sender(request):
         json_status = bot.check_json_sent(all_json)
         print(json_status)
 
-        messenger.quick_reply('Welcome', ['Greetings !!'], recipient_id)
+        # messenger.quick_reply('Welcome', ['Greetings !!'], recipient_id)
 
         if json_status == "text":
             try:
