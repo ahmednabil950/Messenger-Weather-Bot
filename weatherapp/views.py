@@ -51,8 +51,6 @@ def bot_sender(request):
                 }
             ]
 
-        return messenger.quick_reply("Welcome", quick_replies, recipient_id)
-
         if json_status == "text":
             try:
                 text = bot.get_received_text(all_json)
