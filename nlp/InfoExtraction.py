@@ -3,9 +3,9 @@ from nltk.corpus import treebank_chunk
 from nltk import Tree
 from nltk.chunk import tree2conlltags
 
-sentence = "What is the weather in"
+# sentence = "What is the weather in"
 
-sentence = "How is the weather like in Chicago"
+# sentence = "How is the weather like in Chicago"
 
 
 # ne_tagged = ne_chunk(pos_tag(word_tokenize(sentence)))
@@ -16,7 +16,7 @@ sentence = "How is the weather like in Chicago"
 ######################################################################################################
 
 def get_chunks(text, label):
-    chunked = ne_chunk(pos_tag(word_tokenize(sentence)))
+    chunked = ne_chunk(pos_tag(word_tokenize(text)))
     current_chunk = []
 
     for subtree in chunked:
