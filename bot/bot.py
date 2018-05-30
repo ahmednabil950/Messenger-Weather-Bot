@@ -44,13 +44,17 @@ def GPE_detection(text):
 
 
 def bot_response(city=None):
-    if city is not None:
-        weather = weather_agent(city)
-        temp = weather.get_temp()
-        response = "Temperature in " + city + " is " + str(temp)
-        return response
-    else:
-        response = "I can't understand your sentence structure !!"
+    try:
+        if city is not None:
+            weather = weather_agent(city)
+            temp = weather.get_temp()
+            response = "Temperature in " + city + " is " + str(temp)
+            return response
+        else:
+            response = "I can't understand your sentence structure !!"
+            return response
+    except Exception:
+        response = "Sorry, I can't reach out this city !"
         return response
 
 
@@ -94,5 +98,5 @@ class weather_agent:
 
 # print(get_chunks('What is weather like in London', 'GPE'))
 # print(GPE_detection('What is weather like in London'))
-print(bot_agent("What is weather like in London"))
+# print(bot_agent("What is weather like in London"))
 # print(bot_agent('How old are you'))

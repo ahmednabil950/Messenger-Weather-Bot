@@ -63,5 +63,7 @@ def bot_sender(request):
 
             except requests.exceptions.Timeout:
                 print("time out")
+        elif json_status == 'quick_reply':
+            pass
 
     return HttpResponse("s")
