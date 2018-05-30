@@ -47,11 +47,12 @@ def bot_sender(request):
 
         quick_replies = [
                 {
-                    'content_type': "Welcome back from reply !!",
-                    'payload': "<POSTBACK_PAYLOAD>",
-                    'title': "Greetings"
+                    'content_type': "text",
+                    'title': "Welcome"
                 }
             ]
+
+        messenger.quick_reply("Greetings",quick_replies, 1544799305629782)
 
         if json_status == "text":
             try:
