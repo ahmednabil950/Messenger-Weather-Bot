@@ -52,7 +52,7 @@ def bot_sender(request):
                 }
             ]
 
-        bot.quick_reply("Greetings",quick_replies, 1544799305629782)
+        bot.quick_reply("Greetings",quick_replies, recipient_id)
 
         if json_status == "text":
             try:
