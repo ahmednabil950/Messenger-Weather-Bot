@@ -50,7 +50,7 @@ def bot_sender(request):
                     'content_type':"Welcome back from reply !!"
                 }
             ]
-        messenger.quick_reply('Welcome', quick_replies, recipient_id)
+        messenger.quick_reply('Welcome', quick_replies, rec_ID)
 
         if json_status == "text":
             try:
