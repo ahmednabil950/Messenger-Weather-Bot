@@ -47,7 +47,9 @@ def bot_sender(request):
 
         quick_replies = [
                 {
-                    'content_type':"Welcome back from reply !!"
+                    'content_type': "Welcome back from reply !!",
+                    'payload': "<POSTBACK_PAYLOAD>",
+                    'title': "Greetings"
                 }
             ]
 
