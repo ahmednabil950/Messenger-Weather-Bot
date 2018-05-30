@@ -1,2 +1,3 @@
 words
+averaged_perceptron_tagger
 punkt
