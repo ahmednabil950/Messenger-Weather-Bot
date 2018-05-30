@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 from utils.messenger import messenger
+from bot.bot import bot_agent
 from django.views.decorators.csrf import csrf_exempt
 import json
-
 
 @csrf_exempt
 def main_view(request):
@@ -47,15 +47,17 @@ def bot_sender(request):
         if json_status == "text":
 
             try:
-                content = ["Hello There !!"]
                 text = bot.Return_Received_Text(all_json)
                 text = str(text)
-                print("#### TEXT DATATYPE #####")
+                content = [
+                    bot_agent(text)
+                ]
+                print("####### TEXT DATATYPE #######")
                 print(type(text))
+                print("####### TXT IS #######")
+                print(text)
                 req_json, req_status = bot.Sent_text_Msgs(
                     content, "RESPONSE", recipient_id)
-                print("####### TXT IS #####")
-                print(text)
 
             except requests.exceptions.Timeout:
                 print("time out")
