@@ -46,6 +46,8 @@ def bot_sender(request):
 
         print(json_status)
 
+        messenger.quick_reply('text', 'text', recipient_id)
+
         if json_status == "text":
 
             try:
@@ -64,6 +66,6 @@ def bot_sender(request):
             except requests.exceptions.Timeout:
                 print("time out")
         elif json_status == 'quick_reply':
-            pass
+            messenger.quick_reply('text', 'text', recipient_id)
 
     return HttpResponse("s")
