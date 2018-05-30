@@ -4,3 +4,4 @@ requests==2.18.4
 requests-toolbelt==0.8.0
 nltk==3.2.5
 pyowm==2.8.0
+numpy==1.13.3
