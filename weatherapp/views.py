@@ -56,7 +56,6 @@ def bot_sender(request):
                 "payload": ""
             }
         ]
-        bot.quick_reply("QUICK REPLY !!", quick_replies, recipient_id)
 
         ###### Here the input is text from the chatbot #####
         ####################################################
@@ -73,6 +72,7 @@ def bot_sender(request):
                 print(text)
                 req_json, req_status = bot.send_text_msgs(
                     content, "RESPONSE", recipient_id)
+                bot.quick_reply("QUICK REPLY !!", quick_replies, recipient_id)
             except requests.exceptions.Timeout:
                 print("time out")
         ###### Here the input is quick reply buttons #####
@@ -82,4 +82,5 @@ def bot_sender(request):
             if postback.get('payload'):
                 content = ['Greetings !, I am a weather robot glad to help you to find the forecast']
                 bot.send_text_msgs(content, "RESPONSE", recipient_id)
+            bot.quick_reply("QUICK REPLY !!", quick_replies, recipient_id)
     return HttpResponse()
