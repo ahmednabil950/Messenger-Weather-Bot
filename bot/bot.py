@@ -7,7 +7,7 @@ import pyowm
 
 
 def bot_agent(text):
-    if keywordDetection(text):
+    if keywordDetection(text, "weather"):
         print('### WEATHER KEYWORD DETECTED ###')
         ## get_entities
         if GPE_detection(text):
@@ -19,17 +19,17 @@ def bot_agent(text):
             ### GPE DETECTED ###
             print('### GPE DETECTED ###')
             return weather_response(city)
-        elif coordinate_detection(text):
-            ## respond
-            pass
+    elif keywordDetection(text, "Via City"):
+        return respond_to("VIA_CITY")
+    elif keywordDetection(text, "Via Location"):
+        return respond_to("VIA_LOCATION")
     else:
         ## the sentence can't be parsed
         ## does not contain the information relative to the weather
         return weather_response()
 
 
-def keywordDetection(text):
-    keyword = 'weather'
+def keywordDetection(text, keyword):
     if keyword in text.lower():
         return True
     return False
@@ -65,8 +65,8 @@ def respond_to(key):
         "NOT_FOUND": ["Sorry, I can't reach out this city !"],
         "TEMP": ["Temperature in <city> is <value>"],
         "CANT_UNDERSTAND": ["I can't understand your sentence structure !!"],
-        "Via City": ["Please enter the city name"],
-        "Via Location": ["Wait i am getting your GPS coordinates"]
+        "VIA CITY": ["Please enter the city name"],
+        "VIA LOCATION": ["Wait i am getting your GPS coordinates"]
     }
     return respond[key]
     
