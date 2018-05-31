@@ -65,9 +65,7 @@ def bot_sender(request):
             try:
                 text = bot.get_received_text(all_json)
                 text = str(text)
-                content = [
-                    bot_agent(text)
-                ]
+                content = bot_agent(text)
                 print("####### TEXT DATATYPE #######")
                 print(type(text))
                 print("####### TXT IS #######")
