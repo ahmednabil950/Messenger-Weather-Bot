@@ -7,8 +7,11 @@ import pyowm
 
 
 def bot_agent(text):
-        ## get_entities
-    if GPE_detection(text):
+    if keyword_detection(text, "Via City"):
+        return respond_to("VIA_CITY")
+    elif keyword_detection(text, "Via GPS"):
+        return respond_to("VIA_GPS")
+    elif GPE_detection(text):
         # if GPE Found
         # call weather api provider
         ## get gpe entity chunk
@@ -17,10 +20,6 @@ def bot_agent(text):
         ### GPE DETECTED ###
         print('### GPE DETECTED ###')
         return weather_response(city)
-    elif keyword_detection(text, "Via City"):
-        return respond_to("VIA_CITY")
-    elif keyword_detection(text, "Via GPS"):
-        return respond_to("VIA_GPS")
     else:
         ## the sentence can't be parsed
         ## does not contain the information relative to the weather
