@@ -30,6 +30,7 @@ def bot_agent(text):
 
 
 def keyword_detection(text, keyword):
+    keyword = keyword.lower()
     if keyword in text.lower():
         return True
     return False
@@ -64,6 +65,15 @@ def respond_to(key):
     }
     return respond[key]
 
+def training_sentence(text):
+    training_text = {
+        "Via City": {
+            'response': "VIA_CITY"
+        },
+        "Via GPS": {
+            'response': "VIA_GPS"
+        }
+    }
 
 ### WEATHER API PROVIDER ###
 class weather_agent:
