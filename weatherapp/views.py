@@ -69,7 +69,7 @@ def bot_sender(request):
             try:
                 text = bot.get_received_text(all_json)
                 text = str(text)
-                response = bot_agent(text)
+                response = bot_text_agent(text)
                 ############ LOGS ##################################
                 print("####### TEXT DATATYPE #######")
                 print(type(text))
@@ -102,7 +102,7 @@ def bot_sender(request):
             print("####### TXT IS #######")
             print(text)
             print("####### RSP IS #######")
-            print(bot_agent(text))
+            print(bot_btns_agent(text))
             print('####### PAYLOAD ######')
             print(bot.get_quick_reply_payload(all_json))
             ####################################################
