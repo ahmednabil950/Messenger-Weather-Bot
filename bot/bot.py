@@ -7,7 +7,7 @@ import pyowm
 
 
 def bot_agent(text):
-    if keywordDetection(text, "weather"):
+    if keyword_detection(text, "weather"):
         print('### WEATHER KEYWORD DETECTED ###')
         ## get_entities
         if GPE_detection(text):
@@ -19,29 +19,26 @@ def bot_agent(text):
             ### GPE DETECTED ###
             print('### GPE DETECTED ###')
             return weather_response(city)
-    elif keywordDetection(text, "Via City"):
+    elif keyword_detection(text, "Via City"):
         return respond_to("VIA_CITY")
-    elif keywordDetection(text, "Via Location"):
+    elif keyword_detection(text, "Via Location"):
         return respond_to("VIA_LOCATION")
     else:
         ## the sentence can't be parsed
         ## does not contain the information relative to the weather
-        return weather_response()
+        return respond_to("CANT_UNDERSTAND")
 
 
-def keywordDetection(text, keyword):
+def keyword_detection(text, keyword):
     if keyword in text.lower():
         return True
     return False
 
-
 def coordinate_detection(text):
     pass
 
-
 def GPE_detection(text):
     return True if len(get_chunks(text, 'GPE'))>0 else False
-
 
 def weather_response(city=None):
     try:
@@ -52,9 +49,6 @@ def weather_response(city=None):
             response = response.replace("<city>", city)
             response = response.replace("<value>", str(temp))
             return [response]
-        else:
-            response = respond_to("CANT_UNDERSTAND")
-            return response
     except Exception:
         response = respond_to("NOT_FOUND")
         return response
@@ -69,7 +63,6 @@ def respond_to(key):
         "VIA LOCATION": ["Wait i am getting your GPS coordinates"]
     }
     return respond[key]
-    
 
 
 ### WEATHER API PROVIDER ###
