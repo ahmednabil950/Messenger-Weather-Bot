@@ -50,19 +50,6 @@ def bot_sender(request):
         json_status = bot.check_json_sent(all_json)
         print(json_status)
 
-        quick_replies = [
-            {
-                "content_type":"text",
-                "title": "Via City" ,
-                "payload": "QUICK_REPLY"
-            },
-            {
-                "content_type":"location",
-                "title": "Via GPS",
-                "payload": "QUICK_REPLY"
-            }
-        ]
-
         ###### Here the input is text from the chatbot #####
         ####################################################
         if json_status == "text":
@@ -93,7 +80,7 @@ def bot_sender(request):
                 response = respond_to("FACEBOOK_WELCOME")
                 bot.send_text_msgs(response, "RESPONSE", recipient_id)
                 get_started_msg = respond_to("GET_STARTED")[0]
-            bot.quick_reply(get_started_msg, quick_replies, recipient_id)
+            bot.quick_reply(get_started_msg, quick_reply_btns(), recipient_id)
         elif json_status == "quick_reply":
             text = bot.get_received_text(all_json)
             ############ LOGS ##################################
@@ -109,5 +96,24 @@ def bot_sender(request):
             bot.send_text_msgs(bot_btns_agent(text), "RESPONSE", recipient_id)
             if bot.get_quick_reply_payload(all_json) == 'START':
                 get_started_msg = respond_to("GET_STARTED")[0]
-                bot.quick_reply(get_started_msg, quick_replies, recipient_id)
+                bot.quick_reply(get_started_msg, quick_reply_btns(), recipient_id)
+        elif json_status == 'location':
+            pass
     return HttpResponse()
+
+
+def quick_reply_btns():
+    quick_replies = [
+        {
+            "content_type":"text",
+            "title": "Via City" ,
+            "payload": "QUICK_REPLY"
+        },
+        {
+            "content_type":"location",
+            "title": "Via GPS",
+            "payload": "LOCATION"
+        }
+    ]
+    return quick_replies
+    

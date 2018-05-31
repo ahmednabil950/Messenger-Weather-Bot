@@ -51,7 +51,7 @@ class messenger:
         return Received_Json_From_Facebook["entry"][0]["messaging"][0].get('postback') or None
 
     def get_gps_coordinates(self, Received_Json_From_Facebook):
-        return Received_Json_From_Facebook["entry"][0]["messaging"][0].get("message").get("attachments")[0].get("payload")
+        return Received_Json_From_Facebook["entry"][0]["messaging"][0].get("message").get("attachments")[0].get("payload").get("coordinates")
 
     def get_typing_status(self, rec_ID, status):
 
