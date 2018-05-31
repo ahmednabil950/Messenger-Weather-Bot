@@ -45,7 +45,7 @@ def bot_sender(request):
             "payload": "POSTBACK_PAYLOAD"
         }
     ]
-    bot.quick_reply("QUICK REPLY !!", quick_replies, 1544799305629782)
+    bot.quick_reply("QUICK REPLY !!", quick_replies, '1544799305629782')
 
     if request.method == 'POST':
         
