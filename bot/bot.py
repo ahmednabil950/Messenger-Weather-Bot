@@ -6,12 +6,8 @@ from nlp.InfoExtraction import get_chunks
 import pyowm
 
 
-def bot_agent(text):
-    if keyword_detection(text, "Via City"):
-        return respond_to("VIA_CITY")
-    elif keyword_detection(text, "Via GPS"):
-        return respond_to("VIA_GPS")
-    elif GPE_detection(text):
+def bot_text_agent(text):
+    if GPE_detection(text):
         # if GPE Found
         # call weather api provider
         ## get gpe entity chunk
@@ -24,6 +20,12 @@ def bot_agent(text):
         ## the sentence can't be parsed
         ## does not contain the information relative to the weather
         return respond_to("CANT_UNDERSTAND")
+
+def bot_btns_agent(text):
+    if keyword_detection(text, "Via City"):
+        return respond_to("VIA_CITY")
+    elif keyword_detection(text, "Via GPS"):
+        return respond_to("VIA_GPS")
 
 
 def keyword_detection(text, keyword):
