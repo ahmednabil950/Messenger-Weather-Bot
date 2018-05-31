@@ -97,7 +97,6 @@ class messenger:
 
         return req.json(), req.status_code
 
-
     def send_media_msgs(self, array_of_msgs, rec_ID, media_type, Assest=False):
 
         params = {"access_token": self.ACCESS_TOKEN}
@@ -160,7 +159,7 @@ class messenger:
 
         params = {"access_token": self.ACCESS_TOKEN}
         headers = {"Content-Type": "application/json"}
-        profile_api = "https://graph.facebook.com/v2.6/me/messages?access_token="+self.ACCESS_TOKEN
+        profile_api = "https://graph.facebook.com/v2.6/me/messages?access_token=" + self.ACCESS_TOKEN
 
         post_message_url = self.URL_TO_POST(self.post_url)
         Json_Body = dict()
@@ -173,15 +172,38 @@ class messenger:
         print(req.json())
         return req.json()
 
-
     def get_started_msg(self, greeting_msg):
         headers = {"Content-Type": "application/json"}
-        profile_api = "https://graph.facebook.com/v2.6/me/messenger_profile?access_token="+self.ACCESS_TOKEN
+        profile_api = "https://graph.facebook.com/v2.6/me/messenger_profile?access_token=" + self.ACCESS_TOKEN
         json_format = dict()
         json_format = {
             "get_started": {
                 "payload": "GET_STARTED_PAYLOAD"
             }
         }
-        req = requests.post(profile_api, headers=headers, data=json.dumps(json_format), timeout=3)
+        req = requests.post(profile_api, headers=headers,
+                            data=json.dumps(json_format), timeout=3)
+        return req.json()
+
+    def main_menu(self, rec_ID):
+        headers = {"Content-Type": "application/json"}
+        profile_api = "https://graph.facebook.com/v2.6/me/messages?access_token=" + self.ACCESS_TOKEN
+        msg = "Do you want to get back to the beginning ?"
+        quick_replies = [
+            {
+                "content_type": "text",
+                "title": "Main Menu",
+                "payload": "QUICK_REPLY"
+            }
+        ]
+        req = requests.post(
+            profile_api,
+            headers=headers,
+            data=json.dumps(
+                {
+                    "recipient": {"id": rec_ID},
+                    "message": {"text": msg, "quick_replies": quick_replies}
+                }
+            )
+        )
         return req.json()

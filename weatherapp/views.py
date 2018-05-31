@@ -34,6 +34,10 @@ def bot_sender(request):
 
     bot = messenger()
 
+    ###### Here the Main Menu #####
+    ####################################################
+    ## code here !!
+
     if request.method == 'POST':
         
         print("###### JSON FORMAT ######")
@@ -58,13 +62,6 @@ def bot_sender(request):
             }
         ]
         msg = "How would you like to get a weather forecast?"
-        menu = "Main Menu"
-        
-        bot.quick_reply(menu, [{
-            "content_type": "text",
-            "title": menu,
-            "payload": "QUICK_REPLY"
-        }])
 
         ###### Here the input is text from the chatbot #####
         ####################################################
