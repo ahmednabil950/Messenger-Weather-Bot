@@ -21,8 +21,8 @@ def bot_agent(text):
             return weather_response(city)
     elif keyword_detection(text, "Via City"):
         return respond_to("VIA_CITY")
-    elif keyword_detection(text, "Via Location"):
-        return respond_to("VIA_LOCATION")
+    elif keyword_detection(text, "Via GPS"):
+        return respond_to("VIA_GPS")
     else:
         ## the sentence can't be parsed
         ## does not contain the information relative to the weather
@@ -59,8 +59,8 @@ def respond_to(key):
         "NOT_FOUND": ["Sorry, I can't reach out this city !"],
         "TEMP": ["Temperature in <city> is <value>"],
         "CANT_UNDERSTAND": ["I can't understand your sentence structure !!"],
-        "VIA CITY": ["Please enter the city name"],
-        "VIA LOCATION": ["Wait i am getting your GPS coordinates"]
+        "VIA_CITY": ["Please enter the city name"],
+        "VIA_GPS": ["Wait i am getting your GPS coordinates"]
     }
     return respond[key]
 

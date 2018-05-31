@@ -49,12 +49,12 @@ def bot_sender(request):
             {
                 "content_type":"text",
                 "title": "Via City" ,
-                "payload": ""
+                "payload": "QUICK_REPLY"
             },
             {
                 "content_type":"location",
                 "title": "Via GPS",
-                "payload": ""
+                "payload": "QUICK_REPLY"
             }
         ]
         msg = "How would you like to get a weather forecast?"
