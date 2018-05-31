@@ -35,7 +35,10 @@ def bot_sender(request):
 
     if request.method == 'POST':
         
+        print("###### JSON FORMAT ######")
         all_json = json.loads(request.body.decode('utf-8'))
+        recipient_id = bot.get_receptient_ID(all_json)
+        print(all_json)
         
         postback = bot.get_postback(all_json)
 
@@ -45,10 +48,6 @@ def bot_sender(request):
                 content = ['Greetings !, I am a weather robot glad to help you to find the forecast']
                 bot.send_text_msgs(content, "RESPONSE", recipient_id)
 
-        print("###### JSON FORMAT ######")
-        recipient_id = bot.get_receptient_ID(all_json)
-        print(all_json)
-        
         print("###### JSON STATUS ######")
         json_status = bot.check_json_sent(all_json)
         print(json_status)
