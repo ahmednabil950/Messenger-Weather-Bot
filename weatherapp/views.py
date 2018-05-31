@@ -42,7 +42,8 @@ def bot_sender(request):
         if postback.get('payload'):
             payload = postback.get('payload') or None
             if payload is not None:
-                bot.send_text_msgs('Greetings !, I am a weather robot glad to help you to find the forecast')
+                content = ['Greetings !, I am a weather robot glad to help you to find the forecast']
+                bot.send_text_msgs(content, "RESPONSE", recipient_id)
 
         print("###### JSON FORMAT ######")
         recipient_id = bot.get_receptient_ID(all_json)
