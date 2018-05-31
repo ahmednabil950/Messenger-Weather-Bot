@@ -167,7 +167,7 @@ class messenger:
         req = requests.post(profile_api,  headers=headers,
                             data=Json_Body, timeout=3)
 
-        return req.json()
+        return req
 
 
     def get_started_msg(self, greeting_msg):
