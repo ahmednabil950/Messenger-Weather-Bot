@@ -26,6 +26,8 @@ def bot_btns_agent(text):
         return respond_to("VIA_CITY")
     elif keyword_detection(text, "Via GPS"):
         return respond_to("VIA_GPS")
+    elif keyword_detection(text, "Main Menu"):
+        return respond_to("GET_STARTED")
 
 
 def keyword_detection(text, keyword):
