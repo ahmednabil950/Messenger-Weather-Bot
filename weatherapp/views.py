@@ -89,6 +89,12 @@ def bot_sender(request):
                 bot.send_text_msgs(content, "RESPONSE", recipient_id)
             bot.quick_reply(msg, quick_replies, recipient_id)
         elif json_status == "quick_reply":
+            print("####### TEXT DATATYPE #######")
+            print(type(text))
+            print("####### TXT IS #######")
+            print(text)
+            print("####### RSP IS #######")
+            print(bot_agent(text))
             text = bot.get_received_text(all_json)
             bot.send_text_msgs(bot_agent(text), "RESPONSE", recipient_id)
     return HttpResponse()
