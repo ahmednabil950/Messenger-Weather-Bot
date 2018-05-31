@@ -115,4 +115,3 @@ class weather_agent:
 # print(GPE_detection('What is weather like in London'))
 # print(bot_agent("What is weather like in London"))
 # print(bot_agent('How old are you'))
-print(GPE_detection('Main'))

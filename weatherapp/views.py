@@ -90,9 +90,9 @@ def bot_sender(request):
             postback = bot.get_postback(all_json)
             if postback.get('payload'):
                 content = respond_to("FACEBOOK_WELCOME")
-                bot.send_text_msgs(content, "RESPONSE", recipient_id)
+                bot.send_text_msgs(response, "RESPONSE", recipient_id)
                 get_started_msg = respond_to("GET_STARTED")[0]
-            bot.quick_reply(msg, quick_replies, recipient_id)
+            bot.quick_reply(get_started_msg, quick_replies, recipient_id)
         elif json_status == "quick_reply":
             text = bot.get_received_text(all_json)
             ############ LOGS ##################################
@@ -107,5 +107,5 @@ def bot_sender(request):
             ####################################################
             bot.send_text_msgs(bot_agent(text), "RESPONSE", recipient_id)
             if bot.get_quick_reply_payload(all_json) == 'START':
-                bot.quick_reply(msg, quick_replies, recipient_id)
+                bot.quick_reply(get_started_msg, quick_replies, recipient_id)
     return HttpResponse()
