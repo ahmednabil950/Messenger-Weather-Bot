@@ -52,6 +52,7 @@ def weather_response(city=None):
             response = response[0].replace('<city>', city)
             response = response[0].replace('<value>', str(temp))
             response = [response]
+            print(response)
             return response
         else:
             response = respond_to("CANT_UNDERSTAND")
