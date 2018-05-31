@@ -58,6 +58,13 @@ def bot_sender(request):
             }
         ]
         msg = "How would you like to get a weather forecast?"
+        menu = "Main Menu"
+        
+        bot.quick_reply(menu, [{
+            "content_type": "text",
+            "title": menu,
+            "payload": "QUICK_REPLY"
+        }])
 
         ###### Here the input is text from the chatbot #####
         ####################################################
