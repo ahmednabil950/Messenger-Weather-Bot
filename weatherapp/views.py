@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 from utils.messenger import messenger
 from bot.bot import bot_agent
+from bot.bot import respond_to
 from django.views.decorators.csrf import csrf_exempt
 import requests
 import json
@@ -75,12 +76,12 @@ def bot_sender(request):
                     content, "RESPONSE", recipient_id)
             except requests.exceptions.Timeout:
                 print("time out")
-        ###### Here the input is quick reply buttons #####
+        ###### Here the input is get started button #####
         ####################################################
         elif json_status == "postback":
             postback = bot.get_postback(all_json)
             if postback.get('payload'):
-                content = ['Greetings !, I am a weather robot glad to help you to find the forecast']
+                content = respond_to("FACEBOOK_WELCOME")
                 bot.send_text_msgs(content, "RESPONSE", recipient_id)
             bot.quick_reply(msg, quick_replies, recipient_id)
     return HttpResponse()

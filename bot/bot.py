@@ -18,14 +18,14 @@ def bot_agent(text):
             city = get_chunks(text, 'GPE')[0]
             ### GPE DETECTED ###
             print('### GPE DETECTED ###')
-            return bot_response(city)
+            return weather_response(city)
         elif coordinate_detection(text):
             ## respond
             pass
     else:
         ## the sentence can't be parsed
         ## does not contain the information relative to the weather
-        return bot_response()
+        return weather_response()
 
 
 def keywordDetection(text):
@@ -43,19 +43,34 @@ def GPE_detection(text):
     return True if len(get_chunks(text, 'GPE'))>0 else False
 
 
-def bot_response(city=None):
+def weather_response(city=None):
     try:
         if city is not None:
             weather = weather_agent(city)
             temp = weather.get_temp()
-            response = "Temperature in " + city + " is " + str(temp)
+            response = respond_to("TEMP")
+            response = response[0].replace('<city>', city)
+            response = response[0].replace('<value>', str(temp))
+            response = [response]
             return response
         else:
-            response = "I can't understand your sentence structure !!"
+            response = respond_to("CANT_UNDERSTAND")
             return response
     except Exception:
-        response = "Sorry, I can't reach out this city !"
+        response = respond_to("NOT_FOUND")
         return response
+
+def respond_to(key):
+    respond = {
+        "FACEBOOK_WELCOME": ['Greetings !, I am a weather robot glad to help you to find the forecast'],
+        "NOT_FOUND": ["Sorry, I can't reach out this city !"],
+        "TEMP": ["Temperature in <city> is <value>"],
+        "CANT_UNDERSTAND": ["I can't understand your sentence structure !!"],
+        "Via City": ["Please enter the city name"],
+        "Via Location": ["Wait i am getting your GPS coordinates"]
+    }
+    return respond[key]
+    
 
 
 ### WEATHER API PROVIDER ###

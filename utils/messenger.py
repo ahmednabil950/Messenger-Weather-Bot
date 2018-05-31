@@ -50,6 +50,9 @@ class messenger:
     def get_postback(self, Received_Json_From_Facebook):
         return Received_Json_From_Facebook["entry"][0]["messaging"][0].get('postback') or None
 
+    def get_gps_coordinates(self, Received_Json_From_Facebook):
+        return Received_Json_From_Facebook["entry"][0]["messaging"][0].get("message").get("attachments")[0].get("payload")
+
     def get_typing_status(self, rec_ID, status):
 
         params = {"access_token": self.ACCESS_TOKEN}
@@ -93,6 +96,7 @@ class messenger:
             Json_Body = json.loads(Json_Body)
 
         return req.json(), req.status_code
+
 
     def send_media_msgs(self, array_of_msgs, rec_ID, media_type, Assest=False):
 
