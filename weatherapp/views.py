@@ -99,5 +99,7 @@ def bot_sender(request):
             print(text)
             print("####### RSP IS #######")
             print(bot_agent(text))
+            print('####### PAYLOAD ######')
+            print(bot.get_quick_reply_payload(all_json))
             bot.send_text_msgs(bot_agent(text), "RESPONSE", recipient_id)
     return HttpResponse()

@@ -193,7 +193,7 @@ class messenger:
             {
                 "content_type": "text",
                 "title": "Main Menu",
-                "payload": "QUICK_REPLY"
+                "payload": "START"
             }
         ]
         req = requests.post(
