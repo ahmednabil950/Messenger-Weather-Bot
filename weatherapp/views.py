@@ -37,12 +37,12 @@ def bot_sender(request):
         {
             "content_type":"text",
             "title": "Via Location",
-            "payload": "GPE"
+            "payload": "POSTBACK_PAYLOAD"
         },
         {
             "content_type":"text",
             "title": "Via GPS",
-            "payload": "CORD"
+            "payload": "POSTBACK_PAYLOAD"
         }
     ]
     bot.quick_reply("QUICK REPLY !!", quick_replies, 1544799305629782)
