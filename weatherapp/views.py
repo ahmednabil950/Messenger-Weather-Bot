@@ -33,20 +33,6 @@ def bot_sender(request):
 
     bot = messenger()
 
-    quick_replies = [
-        {
-            "content_type":"text",
-            "title": "Via Location",
-            "payload": "POSTBACK_PAYLOAD"
-        },
-        {
-            "content_type":"location",
-            "title": "Via GPS",
-            "payload": "POSTBACK_PAYLOAD"
-        }
-    ]
-    bot.quick_reply("QUICK REPLY !!", quick_replies, '1544799305629782')
-
     if request.method == 'POST':
         
         print("###### JSON FORMAT ######")
@@ -57,6 +43,20 @@ def bot_sender(request):
         print("###### JSON STATUS ######")
         json_status = bot.check_json_sent(all_json)
         print(json_status)
+
+        quick_replies = [
+            {
+                "content_type":"text",
+                "title": "Via Location",
+                "payload": "POSTBACK_PAYLOAD"
+            },
+            {
+                "content_type":"location",
+                "title": "Via GPS",
+                "payload": "POSTBACK_PAYLOAD"
+            }
+        ]
+        bot.quick_reply("QUICK REPLY !!", quick_replies, recipient_id)
 
         ###### Here the input is text from the chatbot #####
         ####################################################
