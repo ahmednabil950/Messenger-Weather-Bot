@@ -88,4 +88,7 @@ def bot_sender(request):
                 content = respond_to("FACEBOOK_WELCOME")
                 bot.send_text_msgs(content, "RESPONSE", recipient_id)
             bot.quick_reply(msg, quick_replies, recipient_id)
+        elif json_status == "quick_reply":
+            text = bot.get_received_text(all_json)
+            bot.send_text_msgs(bot_agent(text))
     return HttpResponse()
