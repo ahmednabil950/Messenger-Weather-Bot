@@ -172,7 +172,7 @@ class messenger:
 
     def get_started_msg(self, greeting_msg):
         headers = {"Content-Type": "application/json"}
-        profile_api = "https://graph.facebook.com/v2.6/me/messenger_profile?access_token="+self.ACCESS_TOKEN
+        profile_api = "https://graph.facebook.com/v2.6/me/messages?access_token="+self.ACCESS_TOKEN
         json_format = dict()
         json_format = {
             "get_started": {

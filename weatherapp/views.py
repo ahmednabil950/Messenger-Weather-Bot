@@ -40,7 +40,7 @@ def bot_sender(request):
             "payload": "POSTBACK_PAYLOAD"
         },
         {
-            "content_type":"text",
+            "content_type":"location",
             "title": "Via GPS",
             "payload": "POSTBACK_PAYLOAD"
         }
