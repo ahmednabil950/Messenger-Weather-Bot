@@ -163,12 +163,12 @@ class messenger:
 
         Json_Body = {"recipient": {"id": rec_ID}, "message": {
             "text": text, "quick_replies": array_of_quiks}}
-        Json_Body = json.dumps(Json_Body)
+        # Json_Body = json.dumps(Json_Body)
         req = requests.post(profile_api,  headers=headers,
                             data=Json_Body, timeout=3)
 
-        print(req.json())
-        return req.json()
+        print(req)
+        return req
 
 
     def get_started_msg(self, greeting_msg):
