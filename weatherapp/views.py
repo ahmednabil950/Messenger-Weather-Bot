@@ -40,18 +40,12 @@ def bot_sender(request):
         recipient_id = bot.get_receptient_ID(all_json)
         print(all_json)
         
-        postback = bot.get_postback(all_json)
-
-        if postback.get('payload'):
-            payload = postback.get('payload') or None
-            if payload is not None:
-                content = ['Greetings !, I am a weather robot glad to help you to find the forecast']
-                bot.send_text_msgs(content, "RESPONSE", recipient_id)
-
         print("###### JSON STATUS ######")
         json_status = bot.check_json_sent(all_json)
         print(json_status)
 
+        ###### Here the input is text from the chatbot #####
+        ####################################################
         if json_status == "text":
             try:
                 text = bot.get_received_text(all_json)
@@ -69,4 +63,11 @@ def bot_sender(request):
                 print("time out")
             except AttributeError:
                 pass
+        ###### Here the input is quick reply buttons #####
+        ####################################################
+        elif json_status == "postback":     
+            if postback.get('payload'):
+                content = ['Greetings !, I am a weather robot glad to help you to find the forecast']
+                bot.send_text_msgs(content, "RESPONSE", recipient_id)
+
     return HttpResponse()

@@ -29,7 +29,8 @@ class messenger:
             elif Received_Json_From_Facebook["entry"][0]["messaging"][0].get("message").get("text"):
                 return "text"
         except AttributeError:
-            print(AttributeError)
+            if self.get_postback(Received_Json_From_Facebook):
+                return "postback"
 
     def get_quick_reply_payload(self, Received_Json_From_Facebook):
         return Received_Json_From_Facebook["entry"][0]["messaging"][0].get("message").get("quick_reply").get("payload")
@@ -47,7 +48,7 @@ class messenger:
             return text["text"]
 
     def get_postback(self, Received_Json_From_Facebook):
-        return Received_Json_From_Facebook["entry"][0]["messaging"][0].get('postback')
+        return Received_Json_From_Facebook["entry"][0]["messaging"][0].get('postback') or None
 
     def get_typing_status(self, rec_ID, status):
 
