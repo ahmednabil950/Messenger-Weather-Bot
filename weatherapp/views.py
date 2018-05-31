@@ -34,25 +34,23 @@ def bot_sender(request):
     bot = messenger()
 
     if request.method == 'POST':
+        
+        all_json = json.loads(request.body.decode('utf-8'))
+        
+        postback = bot.get_postback(all_json)
 
-        bot.ACCESS_TOKEN = "EAAdfJWb1xs8BAJ1us9xi678ZBEMVDVv8cMQtvAcppW6ZCdjlzlYOkhBNoSqyZCfjxbwoFnYejy98k39nIlKyI2gcDZAuz8v4BpKuFgugOVYaAgl272VmAj5E1ot0jByYTTcUfswAiaIeppjpTmItZA2YWF12xNMIAbbKuA1I5ZCwZDZD"
+        if postback.get('payload'):
+            payload = postback.get('payload'.get('FACEBOOK_WELCOME')) or None
+            if payload is not None:
+                bot.send_text_msgs('Greetings !, I am a weather robot glad to help you to find the forecast')
 
         print("###### JSON FORMAT ######")
-        all_json = json.loads(request.body.decode('utf-8'))
         recipient_id = bot.get_receptient_ID(all_json)
         print(all_json)
+        
         print("###### JSON STATUS ######")
         json_status = bot.check_json_sent(all_json)
         print(json_status)
-
-        quick_replies = [
-                {
-                    'content_type': "text",
-                    'title': "Welcome"
-                }
-            ]
-
-        bot.quick_reply("Greetings",quick_replies, recipient_id)
 
         if json_status == "text":
             try:
@@ -69,13 +67,6 @@ def bot_sender(request):
                     content, "RESPONSE", recipient_id)
             except requests.exceptions.Timeout:
                 print("time out")
-        elif json_status == 'quick_reply':
-            quick_replies = [
-                {
-                    'content_type':"some text here !!"
-                }
-            ]
-            messenger.quick_reply('text', quick_replies, recipient_id)
-
-
-    return HttpResponse("s")
+            except AttributeError:
+                pass
+    return HttpResponse()

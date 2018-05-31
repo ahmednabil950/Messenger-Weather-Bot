@@ -5,7 +5,7 @@ import json
 class messenger:
 
     def __init__(self):
-        self.ACCESS_TOKEN = ""
+        self.ACCESS_TOKEN = "EAAdfJWb1xs8BAJ1us9xi678ZBEMVDVv8cMQtvAcppW6ZCdjlzlYOkhBNoSqyZCfjxbwoFnYejy98k39nIlKyI2gcDZAuz8v4BpKuFgugOVYaAgl272VmAj5E1ot0jByYTTcUfswAiaIeppjpTmItZA2YWF12xNMIAbbKuA1I5ZCwZDZD"
         self.URL_BASE = "https://graph.facebook.com/v2.6/me/"
         self.VERIFY_TOKEN = "typicallywillreplyatinstant"
         self.post_url = "messages?access_token="
@@ -21,15 +21,17 @@ class messenger:
             return False
 
     def check_json_sent(self, Received_Json_From_Facebook):
-        print(Received_Json_From_Facebook["entry"][0]["messaging"][0].get("message"))
-        if Received_Json_From_Facebook["entry"][0]["messaging"][0].get("message").get("attachments"):
-            return Received_Json_From_Facebook["entry"][0]["messaging"][0].get("message").get("attachments")[0].get("type")
-        elif Received_Json_From_Facebook["entry"][0]["messaging"][0].get("message").get("quick_reply"):
-            return "quick_reply"
-        elif Received_Json_From_Facebook["entry"][0]["messaging"][0].get("message").get("text"):
-            return "text"
+        try:
+            if Received_Json_From_Facebook["entry"][0]["messaging"][0].get("message").get("attachments"):
+                return Received_Json_From_Facebook["entry"][0]["messaging"][0].get("message").get("attachments")[0].get("type")
+            elif Received_Json_From_Facebook["entry"][0]["messaging"][0].get("message").get("quick_reply"):
+                return "quick_reply"
+            elif Received_Json_From_Facebook["entry"][0]["messaging"][0].get("message").get("text"):
+                return "text"
+        except AttributeError:
+            print(AttributeError)
 
-    def get_payload(self, Received_Json_From_Facebook):
+    def get_quick_reply_payload(self, Received_Json_From_Facebook):
         return Received_Json_From_Facebook["entry"][0]["messaging"][0].get("message").get("quick_reply").get("payload")
 
     def get_attachement_link(self, Received_Json_From_Facebook):
@@ -43,6 +45,9 @@ class messenger:
             "message")
         if text:
             return text["text"]
+
+    def get_postback(self, Received_Json_From_Facebook):
+        return Received_Json_From_Facebook["entry"][0]["messaging"][0].get('postback')
 
     def get_typing_status(self, rec_ID, status):
 
