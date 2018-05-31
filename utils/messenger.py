@@ -152,7 +152,7 @@ class messenger:
 
         return req.json()["attachment_id"]
 
-    def quick_reply_btns(self, array_of_quiks, rec_ID):
+    def quick_reply(self, array_of_quiks, rec_ID):
 
         params = {"access_token": self.ACCESS_TOKEN}
         headers = {"Content-Type": "application/json"}
