@@ -69,5 +69,4 @@ def bot_sender(request):
             if postback.get('payload'):
                 content = ['Greetings !, I am a weather robot glad to help you to find the forecast']
                 bot.send_text_msgs(content, "RESPONSE", recipient_id)
-
     return HttpResponse()
