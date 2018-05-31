@@ -156,6 +156,7 @@ class messenger:
 
         params = {"access_token": self.ACCESS_TOKEN}
         headers = {"Content-Type": "application/json"}
+        profile_api = "https://graph.facebook.com/v2.6/me/messenger_profile?access_token="+self.ACCESS_TOKEN
 
         post_message_url = self.URL_TO_POST(self.post_url)
         Json_Body = dict()
@@ -163,7 +164,7 @@ class messenger:
         Json_Body = {"recipient": {"id": rec_ID}, "message": {
             "text": text, "quick_replies": array_of_quiks}}
         Json_Body = json.dumps(Json_Body)
-        req = requests.post(post_message_url,  headers=headers,
+        req = requests.post(profile_api,  headers=headers,
                             data=Json_Body, timeout=3)
 
         return req.json()
