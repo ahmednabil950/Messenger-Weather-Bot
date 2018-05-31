@@ -114,5 +114,5 @@ class weather_agent:
 
 # print(get_chunks('What is weather like in London', 'GPE'))
 # print(GPE_detection('What is weather like in London'))
-# print(bot_agent("What is weather like in London"))
+print(bot_agent("What is weather like in London"))
 # print(bot_agent('How old are you'))
