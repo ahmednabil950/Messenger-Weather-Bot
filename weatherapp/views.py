@@ -61,8 +61,6 @@ def bot_sender(request):
                     content, "RESPONSE", recipient_id)
             except requests.exceptions.Timeout:
                 print("time out")
-            except AttributeError:
-                pass
         ###### Here the input is quick reply buttons #####
         ####################################################
         elif json_status == "postback":     
