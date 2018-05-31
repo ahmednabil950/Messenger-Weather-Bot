@@ -29,7 +29,6 @@ def bot_btns_agent(text):
     elif keyword_detection(text, "Main Menu"):
         return respond_to("GET_STARTED")
 
-
 def keyword_detection(text, keyword):
     keyword = keyword.lower()
     if keyword in text.lower():
@@ -46,26 +45,34 @@ def weather_response(city=None):
     try:
         if city is not None:
             weather = weather_agent(city)
-            temp = weather.get_temp()
-            response = respond_to("TEMP")[0]
-            response = response.replace("<city>", city)
-            response = response.replace("<value>", str(temp))
-            return [response]
+            return retrieve_responses(weather, respond_to("WEATHER"))
     except Exception:
         response = respond_to("NOT_FOUND")
         return response
 
-def respond_to(key):
+def respond_to(key=None):
     respond = {
         "FACEBOOK_WELCOME": ['Greetings !, I am a weather robot glad to help you to find the forecast'],
         "NOT_FOUND": ["Sorry, I can't reach out this city !"],
         "GET_STARTED": ["How would you like to get a weather forecast?"],
-        "TEMP": ["Temperature in <city> is <value>"],
+        "TEMP": ["Temperature in <city> is <value> Celsius"],
+        "WEATHER": {
+            "TITLE": "Here is the forecast i found",
+            "TEMP": "Temperature is <value> Celsius",
+            "MAX": "Maximum temperature is <value> Celssius",
+            "MIN": "Minimum temperature is <value> Celssius",
+            "HUMIDITY": "Humidity is <value> %",
+            "STATUS": "Weather status <value>",
+            "WIND": "Wind speed is <value> m/s",
+        },
         "CANT_UNDERSTAND": ["I can't understand your sentence structure !!"],
         "VIA_CITY": ["Please enter the city name"],
-        "VIA_GPS": ["Wait i am getting your GPS coordinates"]
+        "VIA_GPS": [
+            "Wait i am getting your GPS coordinates",
+            "The weather at your location is <value>"
+        ]
     }
-    return respond[key]
+    return respond[key] if key is not None else respond
 
 def training_sentence(text):
     training_text = {
@@ -77,45 +84,68 @@ def training_sentence(text):
         }
     }
 
+def retrieve_responses(weather_provider, responses):
+    all_resp = []
+    temp = str(weather_provider.get_temp())
+    humidity = str(weather_provider.get_humidity())
+    wind = str(weather_provider.get_wind_speed())
+    max_temp = str(weather_provider.get_max_temp())
+    min_temp = str(weather_provider.get_min_temp())
+    status = str(weather_provider.get_status())
+    
+    all_resp.append(responses["TITLE"])
+    all_resp.append(responses["TEMP"].replace("<value>", temp))
+    all_resp.append(responses["MAX"].replace("<value>", max_temp))
+    all_resp.append(responses["MIN"].replace("<value>", min_temp))
+    all_resp.append(responses["STATUS"].replace("<value>", status))
+    all_resp.append(responses["HUMIDITY"].replace("<value>", humidity))
+    all_resp.append(responses["WIND"].replace("<value>", wind))
+    return all_resp
+
 ### WEATHER API PROVIDER ###
 class weather_agent:
     
-    def __init__(self, gpe, cord=None):
+    def __init__(self, gpe= None, cord=None):
         self.__api_key = '8e4495c794168a84daa4a6144dada881'
-        self.__owm = pyowm.OWM(self.__api_key)  
-        self.__observation = self.__owm.weather_at_place(gpe)
-        self.__w = self.__observation.get_weather()
-        self.__wind = self.__w.get_wind()                  # {'speed': 4.6, 'deg': 330}
-        self.__humidity = self.__w.get_humidity()          # 87
-        self.__temp = self.__w.get_temperature('celsius')  # {'temp_max': 10.5, 'temp': 9.7, 'temp_min': 9.0}
-        self.__city = gpe
-        
-        if cord is not None:
+        self.__owm = pyowm.OWM(self.__api_key)
+        if cord is None:
+            # search using city name
+            self.__observation = self.__owm.weather_at_place(gpe)
+        elif gpe is None:
             # Search current weather observations in the surroundings of
             # lat=22.57W, lon=43.12S (Rio de Janeiro, BR)
-            observation_list = self.__owm.weather_around_coords(cord[0], cord[1])
-        
+            obser_lst = self.__owm.weather_around_coords(cord[0], cord[1])
+            self.__observation = obser_lst[0]
+        self.__w = self.__observation.get_weather()
+        self.__city = gpe
+                
 
     def get_humidity(self):
-        return self.__humidity
+        return self.__w.get_humidity()
 
     def get_max_temp(self):
-        return self.__temp['temp_max']
+        temp_max = self.__w.get_temperature('celsius')
+        return temp_max['temp_max']
 
     def get_min_temp(self):
-        return self.__temp['temp_min']
+        temp_min = self.__w.get_temperature('celsius')
+        return temp_min['temp_min']
 
     def get_temp(self):
-        return self.__temp['temp']
+        temp = self.__w.get_temperature('celsius')
+        return temp['temp']
 
     def get_wind_speed(self):
-        return self.__wind
+        return self.__w.get_wind()["speed"]
 
     def get_city(self):
         return self.__city
 
+    def get_status(self):
+        return self.__w.get_status()
+
 
 # print(get_chunks('What is weather like in London', 'GPE'))
 # print(GPE_detection('What is weather like in London'))
-# print(bot_agent("What is weather like in London"))
-# print(bot_agent('How old are you'))
+# print(bot_text_agent("What is weather like in London"))
+# print(bot_text_agent('How old are you'))
