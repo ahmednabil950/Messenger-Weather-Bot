@@ -152,7 +152,7 @@ class messenger:
 
         return req.json()["attachment_id"]
 
-    def quick_reply(self, array_of_quiks, rec_ID):
+    def quick_reply(self, msg, array_of_quiks, rec_ID):
 
         params = {"access_token": self.ACCESS_TOKEN}
         headers = {"Content-Type": "application/json"}
@@ -162,7 +162,7 @@ class messenger:
         Json_Body = dict()
 
         Json_Body = {"recipient": {"id": rec_ID}, "message": {
-            "text": "", "quick_replies": array_of_quiks}}
+            "text": msg, "quick_replies": array_of_quiks}}
         Json_Body = json.dumps(Json_Body)
         req = requests.post(profile_api,  headers=headers,
                             data=Json_Body, timeout=3)
