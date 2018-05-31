@@ -48,12 +48,10 @@ def weather_response(city=None):
         if city is not None:
             weather = weather_agent(city)
             temp = weather.get_temp()
-            response = respond_to("TEMP")
-            response = response[0].replace('<city>', city)
-            response = response[0].replace('<value>', str(temp))
-            response = [response]
-            print(response)
-            return response
+            response = respond_to("TEMP")[0]
+            response = response.replace("<city>", city)
+            response = response.replace("<value>", str(temp))
+            return [response]
         else:
             response = respond_to("CANT_UNDERSTAND")
             return response
