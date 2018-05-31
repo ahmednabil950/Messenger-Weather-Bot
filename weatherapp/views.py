@@ -3,6 +3,7 @@ from django.http import HttpRequest, HttpResponse
 from utils.messenger import messenger
 from bot.bot import bot_text_agent
 from bot.bot import bot_btns_agent
+from bot.bot import weather_response
 from bot.bot import respond_to
 from django.views.decorators.csrf import csrf_exempt
 import requests
@@ -98,7 +99,9 @@ def bot_sender(request):
                 get_started_msg = respond_to("GET_STARTED")[0]
                 bot.quick_reply(get_started_msg, quick_reply_btns(), recipient_id)
         elif json_status == 'location':
-            pass
+            response = bot_btns_agent("Via GPS")
+            bot.send_text_msgs(response, "RESPONSE", recipient_id)
+            bot.send_media_msgs()
     return HttpResponse()
 
 
