@@ -55,6 +55,7 @@ def respond_to(key):
     respond = {
         "FACEBOOK_WELCOME": ['Greetings !, I am a weather robot glad to help you to find the forecast'],
         "NOT_FOUND": ["Sorry, I can't reach out this city !"],
+        "GET_STARTED": ["How would you like to get a weather forecast?"],
         "TEMP": ["Temperature in <city> is <value>"],
         "CANT_UNDERSTAND": ["I can't understand your sentence structure !!"],
         "VIA_CITY": ["Please enter the city name"],
@@ -114,3 +115,4 @@ class weather_agent:
 # print(GPE_detection('What is weather like in London'))
 # print(bot_agent("What is weather like in London"))
 # print(bot_agent('How old are you'))
+print(GPE_detection('Main'))

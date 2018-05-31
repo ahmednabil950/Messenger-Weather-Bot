@@ -61,7 +61,6 @@ def bot_sender(request):
                 "payload": "QUICK_REPLY"
             }
         ]
-        msg = "How would you like to get a weather forecast?"
 
         ###### Here the input is text from the chatbot #####
         ####################################################
@@ -70,29 +69,33 @@ def bot_sender(request):
                 text = bot.get_received_text(all_json)
                 text = str(text)
                 response = bot_agent(text)
+                ############ LOGS ##################################
                 print("####### TEXT DATATYPE #######")
                 print(type(text))
                 print("####### TXT IS #######")
                 print(text)
                 print("####### RSP IS #######")
                 print(response)
+                ####################################################
                 bot.send_text_msgs(response, "RESPONSE", recipient_id)
-                ### If the user entered invalid text ###
-                ### Show Menu Button !! ###
                 if response == respond_to("CANT_UNDERSTAND"):
+                    ### If the user entered invalid text ###
+                    ### Show Menu Button !! ###
                     bot.main_menu(recipient_id)
             except requests.exceptions.Timeout:
                 print("time out")
-        ###### Here the input is get started button #####
-        ####################################################
         elif json_status == "postback":
+            ###### Here the input is get started button #####
+            ####################################################
             postback = bot.get_postback(all_json)
             if postback.get('payload'):
                 content = respond_to("FACEBOOK_WELCOME")
                 bot.send_text_msgs(content, "RESPONSE", recipient_id)
+                get_started_msg = respond_to("GET_STARTED")[0]
             bot.quick_reply(msg, quick_replies, recipient_id)
         elif json_status == "quick_reply":
             text = bot.get_received_text(all_json)
+            ############ LOGS ##################################
             print("####### TEXT DATATYPE #######")
             print(type(text))
             print("####### TXT IS #######")
@@ -101,6 +104,7 @@ def bot_sender(request):
             print(bot_agent(text))
             print('####### PAYLOAD ######')
             print(bot.get_quick_reply_payload(all_json))
+            ####################################################
             bot.send_text_msgs(bot_agent(text), "RESPONSE", recipient_id)
             if bot.get_quick_reply_payload(all_json) == 'START':
                 bot.quick_reply(msg, quick_replies, recipient_id)
