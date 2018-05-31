@@ -107,5 +107,6 @@ def bot_sender(request):
             ####################################################
             bot.send_text_msgs(bot_agent(text), "RESPONSE", recipient_id)
             if bot.get_quick_reply_payload(all_json) == 'START':
+                get_started_msg = respond_to("GET_STARTED")[0]
                 bot.quick_reply(get_started_msg, quick_replies, recipient_id)
     return HttpResponse()
