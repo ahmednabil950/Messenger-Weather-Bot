@@ -21,7 +21,7 @@ class messenger:
             return False
 
     def check_json_sent(self, Received_Json_From_Facebook):
-
+        print(Received_Json_From_Facebook["entry"][0]["messaging"][0].get("message"))
         if Received_Json_From_Facebook["entry"][0]["messaging"][0].get("message").get("attachments"):
             return Received_Json_From_Facebook["entry"][0]["messaging"][0].get("message").get("attachments")[0].get("type")
         elif Received_Json_From_Facebook["entry"][0]["messaging"][0].get("message").get("quick_reply"):
