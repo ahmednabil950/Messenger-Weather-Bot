@@ -45,7 +45,7 @@ def bot_sender(request):
             "payload": "CORD"
         }
     ]
-    bot.quick_reply("QUICK REPLY !!", quick_replies, recipient_id)
+    bot.quick_reply("QUICK REPLY !!", quick_replies, 1544799305629782)
 
     if request.method == 'POST':
         
