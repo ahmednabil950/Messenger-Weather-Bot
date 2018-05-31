@@ -40,7 +40,7 @@ def bot_sender(request):
         postback = bot.get_postback(all_json)
 
         if postback.get('payload'):
-            payload = postback.get('payload'.get('FACEBOOK_WELCOME')) or None
+            payload = postback.get('payload') or None
             if payload is not None:
                 bot.send_text_msgs('Greetings !, I am a weather robot glad to help you to find the forecast')
 
