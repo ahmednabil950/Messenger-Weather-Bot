@@ -75,7 +75,7 @@ def bot_sender(request):
                 print("####### TXT IS #######")
                 print(text)
                 print("####### RSP IS #######")
-                print(content)
+                print(response)
                 bot.send_text_msgs(response, "RESPONSE", recipient_id)
                 ### If the user entered invalid text ###
                 ### Show Menu Button !! ###
