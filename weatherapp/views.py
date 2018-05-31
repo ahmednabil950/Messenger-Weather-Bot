@@ -90,5 +90,5 @@ def bot_sender(request):
             bot.quick_reply(msg, quick_replies, recipient_id)
         elif json_status == "quick_reply":
             text = bot.get_received_text(all_json)
-            bot.send_text_msgs(bot_agent(text))
+            bot.send_text_msgs(bot_agent(text), "RESPONSE", recipient_id)
     return HttpResponse()
