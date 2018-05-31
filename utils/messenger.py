@@ -169,11 +169,6 @@ class messenger:
         print(req.json())
         return req.json()
 
-    def quick_reply_msg(self, msg):
-        headers = {"Content-Type": "application/json"}
-        profile_api = "https://graph.facebook.com/v2.6/me/messages?access_token="+self.ACCESS_TOKEN
-        pass
-
 
     def get_started_msg(self, greeting_msg):
         headers = {"Content-Type": "application/json"}
