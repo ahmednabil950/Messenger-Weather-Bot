@@ -33,8 +33,6 @@ def bot_sender(request):
 
     bot = messenger()
 
-    bot.get_started_msg("Greatings !!")
-
     if request.method == 'POST':
 
         bot.ACCESS_TOKEN = "EAAdfJWb1xs8BAJ1us9xi678ZBEMVDVv8cMQtvAcppW6ZCdjlzlYOkhBNoSqyZCfjxbwoFnYejy98k39nIlKyI2gcDZAuz8v4BpKuFgugOVYaAgl272VmAj5E1ot0jByYTTcUfswAiaIeppjpTmItZA2YWF12xNMIAbbKuA1I5ZCwZDZD"
@@ -78,5 +76,6 @@ def bot_sender(request):
                 }
             ]
             messenger.quick_reply('text', quick_replies, recipient_id)
+
 
     return HttpResponse("s")
