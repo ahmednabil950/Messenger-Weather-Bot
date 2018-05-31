@@ -72,7 +72,7 @@ def bot_sender(request):
                 print(type(text))
                 print("####### TXT IS #######")
                 print(text)
-                print("####### TXT IS #######")
+                print("####### RSP IS #######")
                 print(content)
                 req_json, req_status = bot.send_text_msgs(
                     content, "RESPONSE", recipient_id)
