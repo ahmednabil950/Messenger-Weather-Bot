@@ -69,15 +69,18 @@ def bot_sender(request):
             try:
                 text = bot.get_received_text(all_json)
                 text = str(text)
-                content = bot_agent(text)
+                response = bot_agent(text)
                 print("####### TEXT DATATYPE #######")
                 print(type(text))
                 print("####### TXT IS #######")
                 print(text)
                 print("####### RSP IS #######")
                 print(content)
-                req_json, req_status = bot.send_text_msgs(
-                    content, "RESPONSE", recipient_id)
+                bot.send_text_msgs(response, "RESPONSE", recipient_id)
+                ### If the user entered invalid text ###
+                ### Show Menu Button !! ###
+                if response == respond_to("CANT_UNDERSTAND"):
+                    bot.main_menu(recipient_id)
             except requests.exceptions.Timeout:
                 print("time out")
         ###### Here the input is get started button #####
