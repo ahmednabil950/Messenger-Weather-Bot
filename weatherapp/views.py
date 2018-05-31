@@ -33,6 +33,20 @@ def bot_sender(request):
 
     bot = messenger()
 
+    quick_replies = [
+        {
+            "content_type":"text",
+            "title": "Via Location",
+            "payload": "GPE"
+        },
+        {
+            "content_type":"text",
+            "title": "Via GPS",
+            "payload": "CORD"
+        }
+    ]
+    bot.quick_reply("QUICK REPLY !!", quick_replies, recipient_id)
+
     if request.method == 'POST':
         
         print("###### JSON FORMAT ######")
