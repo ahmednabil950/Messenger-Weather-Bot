@@ -63,7 +63,8 @@ def bot_sender(request):
                 print("time out")
         ###### Here the input is quick reply buttons #####
         ####################################################
-        elif json_status == "postback":     
+        elif json_status == "postback":
+            postback = bot.get_postback(all_json)
             if postback.get('payload'):
                 content = ['Greetings !, I am a weather robot glad to help you to find the forecast']
                 bot.send_text_msgs(content, "RESPONSE", recipient_id)
