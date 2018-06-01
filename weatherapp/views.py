@@ -70,7 +70,7 @@ def bot_sender(request):
                 if response == respond_to("CANT_UNDERSTAND"):
                     ### If the user entered invalid text ###
                     ### Show Menu Button !! ###
-                    bot.main_menu(respond_to("GET_STARTED"), recipient_id)
+                    bot.main_menu(respond_to("GET_STARTED")[0], recipient_id)
             except requests.exceptions.Timeout:
                 print("time out")
         elif json_status == "postback":
@@ -90,7 +90,7 @@ def bot_sender(request):
             print("####### TXT IS #######")
             print(text)
             print("####### RSP IS #######")
-            # print(bot_btns_agent(text))
+            print(bot_btns_agent(text))
             print('####### PAYLOAD ######')
             print(bot.get_quick_reply_payload(all_json))
             ####################################################
