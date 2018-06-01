@@ -103,7 +103,6 @@ def bot_sender(request):
             cord = (cord['lat'], cord['long'])
             response = bot_btns_agent("Via GPS", cord=cord)
             bot.send_text_msgs(response, "RESPONSE", recipient_id)
-        bot.main_menu(recipient_id)
     return HttpResponse()
 
 
