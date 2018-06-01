@@ -21,11 +21,11 @@ def bot_text_agent(text):
         ## does not contain the information relative to the weather
         return respond_to("CANT_UNDERSTAND")
 
-def bot_btns_agent(text):
+def bot_btns_agent(text, cord=None):
     if keyword_detection(text, "Via City"):
         return respond_to("VIA_CITY")
     elif keyword_detection(text, "Via GPS"):
-        return respond_to("VIA_GPS")
+        return weather_response(cord=cord)
     elif keyword_detection(text, "Main Menu"):
         return respond_to("GET_STARTED")
 
@@ -41,10 +41,13 @@ def coordinate_detection(text):
 def GPE_detection(text):
     return True if len(get_chunks(text, 'GPE'))>0 else False
 
-def weather_response(city=None):
+def weather_response(city=None, cord=None):
     try:
         if city is not None:
             weather = weather_agent(city)
+            return retrieve_responses(weather, respond_to("WEATHER"))
+        elif cord is not None:
+            weather = weather_agent(cord=cord)
             return retrieve_responses(weather, respond_to("WEATHER"))
     except Exception:
         response = respond_to("NOT_FOUND")
@@ -67,10 +70,18 @@ def respond_to(key=None):
         },
         "CANT_UNDERSTAND": ["I can't understand your sentence structure !!"],
         "VIA_CITY": ["Please enter the city name"],
-        "VIA_GPS": [
-            "Wait i am getting your GPS coordinates",
-            "The weather at your location is <value>"
-        ]
+        "VIA_GPS": ["Please wait i am getting your GPS coordinates",
+            {
+                "WEATHER": {
+                "TITLE": "Here is the forecast i found",
+                "TEMP": "Temperature is <value> Celsius",
+                "MAX": "Maximum temperature is <value> Celssius",
+                "MIN": "Minimum temperature is <value> Celssius",
+                "HUMIDITY": "Humidity is <value> %",
+                "STATUS": "Weather status <value>",
+                "WIND": "Wind speed is <value> m/s",
+            }
+        }]
     }
     return respond[key] if key is not None else respond
 
