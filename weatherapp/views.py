@@ -99,7 +99,7 @@ def bot_sender(request):
                 get_started_msg = respond_to("GET_STARTED")[0]
                 bot.quick_reply(get_started_msg, quick_reply_btns(), recipient_id)
         elif json_status == 'location':
-            cord = bot.get_gps_coordinates()
+            cord = bot.get_gps_coordinates(all_json)
             cord = (cord['lat'], cord['long'])
             response = bot_btns_agent("Via GPS", cord=cord)
             bot.send_text_msgs(response, "RESPONSE", recipient_id)
