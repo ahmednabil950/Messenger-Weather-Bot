@@ -101,7 +101,6 @@ def bot_sender(request):
         elif json_status == 'location':
             response = bot_btns_agent("Via GPS")
             bot.send_text_msgs(response, "RESPONSE", recipient_id)
-            bot.send_media_msgs()
     return HttpResponse()
 
 
