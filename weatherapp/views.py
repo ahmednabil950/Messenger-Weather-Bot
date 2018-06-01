@@ -18,6 +18,8 @@ def main_view(request):
     if request.method == 'POST':
         return bot_sender(request)
 
+    print(request)
+
 
 def bot_access_token(request):
     bot = messenger()
@@ -31,8 +33,6 @@ def bot_access_token(request):
 
 @csrf_exempt
 def bot_sender(request):
-
-    print(request)
 
     bot = messenger()
 
