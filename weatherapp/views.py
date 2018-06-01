@@ -12,13 +12,12 @@ import json
 
 @csrf_exempt
 def main_view(request):
+    print(request)
     if request.method == 'GET':
         return bot_access_token(request)
 
     if request.method == 'POST':
         return bot_sender(request)
-
-    print(request)
 
 
 def bot_access_token(request):
