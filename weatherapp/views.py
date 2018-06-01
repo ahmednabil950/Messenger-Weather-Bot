@@ -70,7 +70,7 @@ def bot_sender(request):
                 if response == respond_to("CANT_UNDERSTAND"):
                     ### If the user entered invalid text ###
                     ### Show Menu Button !! ###
-                    bot.main_menu(recipient_id)
+                    bot.main_menu(respond_to("GET_STARTED"), recipient_id)
             except requests.exceptions.Timeout:
                 print("time out")
         elif json_status == "postback":
@@ -94,10 +94,11 @@ def bot_sender(request):
             print('####### PAYLOAD ######')
             print(bot.get_quick_reply_payload(all_json))
             ####################################################
-            bot.send_text_msgs(bot_btns_agent(text), "RESPONSE", recipient_id)
             if bot.get_quick_reply_payload(all_json) == 'START':
                 get_started_msg = respond_to("GET_STARTED")[0]
                 bot.quick_reply(get_started_msg, quick_reply_btns(), recipient_id)
+            else:
+                bot.send_text_msgs(bot_btns_agent(text), "RESPONSE", recipient_id)
         elif json_status == 'location':
             cord = bot.get_gps_coordinates(all_json)
             cord = (cord['lat'], cord['long'])

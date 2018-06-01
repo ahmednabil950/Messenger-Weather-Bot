@@ -185,10 +185,9 @@ class messenger:
                             data=json.dumps(json_format), timeout=3)
         return req.json()
 
-    def main_menu(self, rec_ID):
+    def main_menu(self, msg, rec_ID):
         headers = {"Content-Type": "application/json"}
         profile_api = "https://graph.facebook.com/v2.6/me/messages?access_token=" + self.ACCESS_TOKEN
-        msg = "Do you want to get back to the beginning ?"
         quick_replies = [
             {
                 "content_type": "text",
