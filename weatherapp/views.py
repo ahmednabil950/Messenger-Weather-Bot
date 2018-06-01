@@ -90,7 +90,7 @@ def bot_sender(request):
             print("####### TXT IS #######")
             print(text)
             print("####### RSP IS #######")
-            print(bot_btns_agent(text))
+            # print(bot_btns_agent(text))
             print('####### PAYLOAD ######')
             print(bot.get_quick_reply_payload(all_json))
             ####################################################
