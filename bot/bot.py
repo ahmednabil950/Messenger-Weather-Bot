@@ -16,6 +16,9 @@ def bot_text_agent(text):
         ### GPE DETECTED ###
         print('### GPE DETECTED ###')
         return weather_response(city)
+    elif small_talk_detection(text):
+        idx = small_talk_detection(text)
+        return small_talk_answer(idx)
     else:
         ## the sentence can't be parsed
         ## does not contain the information relative to the weather
@@ -85,15 +88,42 @@ def respond_to(key=None):
     }
     return respond[key] if key is not None else respond
 
-def training_sentence(text):
-    training_text = {
-        "Via City": {
-            'response': "VIA_CITY"
+def small_talk():
+    return [
+        {
+            'QUESTION': "Are you there?",
+            'ANSWWER': "I am Here to help you. Tell me your city name"
         },
-        "Via GPS": {
-            'response': "VIA_GPS"
+        {
+            'QUESTION': "How old are you?",
+            'ANSWER': "I have been developed recently for the purpose of weather forecast"
+        },
+        {
+            'QUESTION': "You are beautiful",
+            'ANSSWER': "Thanks, at your service always"
+        },
+        {
+            'QUESTION': "You are a chatbot",
+            'ANSWER': "Yes, Ask me about the weather via location or city name and i will be glad to find it"
+        },
+        {
+            'QUESTION': "Are you ready?",
+            'ANSWER': "Yes, Just give me your location or city name"
+        },
+        {
+            'QUESTION': "You're so clever.",
+            'ANSWER': "You are welcome, Glad to hear it"
         }
-    }
+    ]
+
+def small_talk_detection(text):
+    talks = small_talk()
+    for idx, talk in enumerate(talks):
+        if text.lower() in talk['QUESTION'].lower():
+            return idx
+
+def small_talk_answer(idx):
+    return small_talk()[idx]['ANSWER']
 
 def retrieve_responses(weather_provider, responses):
     all_resp = []
