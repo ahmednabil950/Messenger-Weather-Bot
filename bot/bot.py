@@ -93,7 +93,7 @@ def small_talk():
     return [
         {
             'QUESTION': "Are you there?",
-            'ANSWER': ["I am Here to help you"] + respond_to('GET_STARTED')
+            'ANSWER': ["I am Here to help you to find the weather forecast. Tell me your city name"]
         },
         {
             'QUESTION': "How old are you?",
