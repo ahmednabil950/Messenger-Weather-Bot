@@ -13,7 +13,7 @@ import json
 @csrf_exempt
 def main_view(request):
     print("###### REQUEST FORMAT ######")
-    print(request)
+    print(request.json())
     if request.method == 'GET':
         return bot_access_token(request)
 
