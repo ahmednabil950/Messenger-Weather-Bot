@@ -6,9 +6,9 @@ class messenger:
 
     def __init__(self):
         ## ACCESS TOKEN MUST BE PROVIDED (FROM FACEBOOK)
-        self.ACCESS_TOKEN = ""
-        ## VERIFY TOKEN MUST BE PROVIDED (FROM FACEBOOK) -- ANY TOKEN STRING YOU ENTER FROM WEBHOOK CONFIGURATIONS
-        self.VERIFY_TOKEN = ""
+        self.ACCESS_TOKEN = "EAAdfJWb1xs8BADtzMFyh1IqSxy9PGojU7gGk8KkYiS5o7ZA7a8ZANnfZAoY18ZCLLZA6PynZCpdloeYTi6XZCWipYqErPYMEjrcyE9UF5KcA1gjRvRSFLUea7rAv8ovZAZBFFOljCHPNMrnCPRTvDPdfSZASrQg4S19CycWM7RrYXgEwZDZD"
+        ## VERIFY TOKEN MUST BE PROVIDED (FROM FACEBOOK) -- ANY TOKEN STRING YOU ENTER FROM WEBHOOK
+        self.VERIFY_TOKEN = "typicallywillreplyatinstant"
         self.URL_BASE = "https://graph.facebook.com/v2.6/me/"
         self.post_url = "messages?access_token="
         self.assest_url = "message_attachments?access_token="
