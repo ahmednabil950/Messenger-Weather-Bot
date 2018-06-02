@@ -3,7 +3,7 @@ from django.http import HttpRequest, HttpResponse
 from utils.messenger import messenger
 from bot.bot import bot_text_agent
 from bot.bot import bot_btns_agent
-from bot.bot import weather_response
+from bot.bot import weather_agent
 from bot.bot import respond_to
 from django.views.decorators.csrf import csrf_exempt
 import requests
