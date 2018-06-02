@@ -17,7 +17,9 @@ def main_view(request):
 
     if request.method == 'POST':
         print("###### REQUEST FORMAT ######")
-        print(request.POST)
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        print(body)
         return bot_sender(request)
 
 
