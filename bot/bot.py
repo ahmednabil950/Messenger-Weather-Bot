@@ -4,6 +4,7 @@ sys.path.insert(0, os.path.dirname(os.getcwd()))
 
 from nlp.InfoExtraction import get_chunks
 import pyowm
+import string
 
 
 def bot_text_agent(text):
@@ -16,7 +17,7 @@ def bot_text_agent(text):
         ### GPE DETECTED ###
         print('### GPE DETECTED ###')
         return weather_response(city)
-    elif small_talk_detection(text):
+    elif small_talk_detection(text) is not None:
         idx = small_talk_detection(text)
         return small_talk_answer(idx)
     else:
@@ -92,7 +93,7 @@ def small_talk():
     return [
         {
             'QUESTION': "Are you there?",
-            'ANSWWER': "I am Here to help you. Tell me your city name"
+            'ANSWER': "I am Here to help you. Tell me your city name"
         },
         {
             'QUESTION': "How old are you?",
@@ -100,7 +101,7 @@ def small_talk():
         },
         {
             'QUESTION': "You are beautiful",
-            'ANSSWER': "Thanks, at your service always"
+            'ANSWER': "Thanks, at your service always"
         },
         {
             'QUESTION': "You are a chatbot",
@@ -118,6 +119,7 @@ def small_talk():
 
 def small_talk_detection(text):
     talks = small_talk()
+    text = remove_punctuation(text)
     for idx, talk in enumerate(talks):
         if text.lower() in talk['QUESTION'].lower():
             return idx
@@ -142,6 +144,9 @@ def retrieve_responses(weather_provider, responses):
     all_resp.append(responses["HUMIDITY"].replace("<value>", humidity))
     all_resp.append(responses["WIND"].replace("<value>", wind))
     return all_resp
+
+def remove_punctuation(s):
+    return s.translate(str.maketrans('','',string.punctuation))
 
 ### WEATHER API PROVIDER ###
 class weather_agent:
@@ -190,3 +195,8 @@ class weather_agent:
 # print(GPE_detection('What is weather like in London'))
 # print(bot_text_agent("What is weather like in London"))
 # print(bot_text_agent('How old are you'))
+# print(bot_text_agent("Are you there?"))
+# print(small_talk()[1]['QUESTION'])
+# print(small_talk_detection("Are you there?"))
+# print(small_talk_detection("are you there?"))
+# print(remove_punctuation("Are you there?"))
