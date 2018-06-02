@@ -93,27 +93,27 @@ def small_talk():
     return [
         {
             'QUESTION': "Are you there?",
-            'ANSWER': "I am Here to help you. Tell me your city name"
+            'ANSWER': ["I am Here to help you. Tell me your city name"]
         },
         {
             'QUESTION': "How old are you?",
-            'ANSWER': "I have been developed recently for the purpose of weather forecast"
+            'ANSWER': ["I have been developed recently for the purpose of weather forecast"]
         },
         {
             'QUESTION': "You are beautiful",
-            'ANSWER': "Thanks, at your service always"
+            'ANSWER': ["Thanks, at your service always"]
         },
         {
             'QUESTION': "You are a chatbot",
-            'ANSWER': "Yes, Ask me about the weather via location or city name and i will be glad to find it"
+            'ANSWER': ["Yes, Ask me about the weather via location or city name and i will be glad to find it"]
         },
         {
             'QUESTION': "Are you ready?",
-            'ANSWER': "Yes, Just give me your location or city name"
+            'ANSWER': ["Yes, Just give me your location or city name"]
         },
         {
             'QUESTION': "You're so clever.",
-            'ANSWER': "You are welcome, Glad to hear it"
+            'ANSWER': ["You are welcome, Glad to hear it"]
         }
     ]
 
