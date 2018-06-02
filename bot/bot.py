@@ -8,6 +8,15 @@ import string
 
 
 def bot_text_agent(text):
+    """
+    text agent responsible for any text processing to extract entities like GPE
+    arguments:
+    -- text: input text to be processed <string format>
+    returns:
+    -- weather agent response           <ENTITY FOUND>
+    -- small talk answer                <PRE-DEFIND TALK FOUND>
+    -- misunderstandinf response        <CAN'T PARSE THE SENTENCE>
+    """
     if GPE_detection(text):
         # if GPE Found
         # call weather api provider
@@ -16,7 +25,7 @@ def bot_text_agent(text):
         city = get_chunks(text, 'GPE')[0]
         ### GPE DETECTED ###
         print('### GPE DETECTED ###')
-        return weather_response(city)
+        return weather_agent(city)
     elif small_talk_detection(text) is not None:
         idx = small_talk_detection(text)
         return small_talk_answer(idx)
@@ -26,14 +35,34 @@ def bot_text_agent(text):
         return respond_to("CANT_UNDERSTAND")
 
 def bot_btns_agent(text, cord=None):
+    """
+    this agent is called when quick reply button is pressed from messenger chat
+    arguments:
+    -- input -- text from the button                    <string>
+    -- cord -- GPS coordinates of the given location    <python tuple>
+    return:
+    -- city response                                    <Via city btn is prssed>
+    -- location response                                <Send location btn is pressed>
+    -- get started response                             <get started btn is pressed>
+
+    """
     if keyword_detection(text, "Via City"):
         return respond_to("VIA_CITY")
     elif keyword_detection(text, "Via GPS"):
-        return weather_response(cord=cord)
+        return weather_agent(cord=cord)
     elif keyword_detection(text, "Main Menu"):
         return respond_to("GET_STARTED")
 
 def keyword_detection(text, keyword):
+    """
+    keyword detection function from given input text and keyword to be detected in the text.
+    arguments:
+    -- text -- input text                           <string>
+    -- keyword -- keyword to be found in the text   <string>
+    return:
+    -- Boolean True                                 <found>
+    -- Boolean False                                <not found>
+    """
     keyword = keyword.lower()
     if keyword in text.lower():
         return True
@@ -43,21 +72,42 @@ def coordinate_detection(text):
     pass
 
 def GPE_detection(text):
+    """
+    GPE entities detection in the given text using NLTK using pretrained models.
+    arguments:
+    -- text -- input text to be parsed
+    return:
+    -- Boolean if GPE entitis is found inside the text
+    -- True     <Found>
+    -- False    <Not Found>
+    """
     return True if len(get_chunks(text, 'GPE'))>0 else False
 
-def weather_response(city=None, cord=None):
+def weather_agent(city=None, cord=None):
+    """
+    weather agent takes actions according to the given params, <city or coordinates>
+    arguments:
+    -- city -- string of the extracted entity <city, country, place, location name>
+    -- cord -- coordinates of the location to be looked up for <tuple>
+    return:
+    -- response from the weather api provider for GPS or city           <valid GPE>
+    -- not found response from weather api provider                     <invalid GPE>
+    """
     try:
         if city is not None:
-            weather = weather_agent(city)
+            weather = weather_api(city)
             return retrieve_responses(weather, respond_to("WEATHER"))
         elif cord is not None:
-            weather = weather_agent(cord=cord)
+            weather = weather_api(cord=cord)
             return retrieve_responses(weather, respond_to("WEATHER"))
     except Exception:
         response = respond_to("NOT_FOUND")
         return response
 
 def respond_to(key=None):
+    """
+    training sentences which the agent should have knowledge about
+    """
     respond = {
         "FACEBOOK_WELCOME": ['Greetings !, I am a weather robot glad to help you to find the forecast'],
         "NOT_FOUND": ["Sorry, I can't reach out this city !"],
@@ -118,6 +168,14 @@ def small_talk():
     ]
 
 def small_talk_detection(text):
+    """
+    small talk sentence recognition for the input text
+    arguments:
+    -- text -- input text <string>
+    return:
+    -- idx -- index of the talke sentence if found
+    -- True <Found>         False <Not found>
+    """
     talks = small_talk()
     text = remove_punctuation(text)
     for idx, talk in enumerate(talks):
@@ -125,9 +183,23 @@ def small_talk_detection(text):
             return idx
 
 def small_talk_answer(idx):
+    """
+    get answer of the predefind question (knowledge base answer)
+    arguments:
+    -- idx -- index of the answer that has been found
+    return:
+    """
     return small_talk()[idx]['ANSWER']
 
 def retrieve_responses(weather_provider, responses):
+    """
+    retrieve responses according to the actions of weather api provider
+    arguments:
+    -- weather_provider -- weather api object                           <pyowm>
+    -- responses -- pre-defined responses contains the action as key    <python dict>
+    return:
+    -- all_resp -- list of all responses
+    """
     all_resp = []
     temp = str(weather_provider.get_temp())
     humidity = str(weather_provider.get_humidity())
@@ -146,10 +218,15 @@ def retrieve_responses(weather_provider, responses):
     return all_resp
 
 def remove_punctuation(s):
+    """
+    remove all punctuations from string
+    arguments:
+    -- s -- input string to be processed
+    """
     return s.translate(str.maketrans('','',string.punctuation))
 
 ### WEATHER API PROVIDER ###
-class weather_agent:
+class weather_api:
     
     def __init__(self, gpe= None, cord=None):
         self.__api_key = '8e4495c794168a84daa4a6144dada881'
