@@ -6,9 +6,7 @@ Facebook Weather chatbot using nltk and pyowm weather api provider.
 </br>
 </br>
 
-<img align="left" src="https://github.com/ahmednabil950/Messenger-Weather-Bot/blob/master/imgs/Selection_079.png">
-<img align="right" src="https://github.com/ahmednabil950/Messenger-Weather-Bot/blob/master/imgs/Selection_080.png">
-<img align="center" src="https://github.com/ahmednabil950/Messenger-Weather-Bot/blob/master/imgs/Selection_081.png">
+
 
 </br>
 </br>
